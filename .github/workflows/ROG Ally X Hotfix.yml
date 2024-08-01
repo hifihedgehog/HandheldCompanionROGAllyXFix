@@ -48,10 +48,6 @@ jobs:
       - name: Validate Release
         if: inputs.releaseVersion != ''
         run: |
-          if ('${{ inputs.releaseVersion }}' -notmatch '^\d+(?:\.\d+){3}$') {
-            Write-Error "Version ${{ inputs.releaseVersion }} is not valid, please use format Major.Minor.Revision.Build"
-            Exit 1
-          }
 
           if ('${{ github.ref }}' -ne 'refs/heads/main') {
             Write-Error "Release may only be created from main"
