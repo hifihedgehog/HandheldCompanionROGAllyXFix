@@ -79,7 +79,7 @@ public static class DeviceManager
     public static void Start()
     {
         // fail-safe
-        PnPUtil.StartPnPUtil(@"/add-driver C:\Windows\INF\xusb22.inf /install");
+        PnPUtil.StartPnPUtil(@"/add-driver C:\Windows\INF\oem118.inf /install");
 
         UsbDeviceListener.StartListen(DeviceInterfaceIds.UsbDevice);
         UsbDeviceListener.DeviceArrived += UsbDevice_DeviceArrived;
@@ -123,7 +123,7 @@ public static class DeviceManager
         HidDeviceListener.DeviceRemoved -= HidDevice_DeviceRemoved;
 
         // fail-safe
-        PnPUtil.StartPnPUtil(@"/add-driver C:\Windows\INF\xusb22.inf /install");
+        PnPUtil.StartPnPUtil(@"/add-driver C:\Windows\INF\oem118.inf /install");
 
         LogManager.LogInformation("{0} has stopped", "DeviceManager");
     }
