@@ -54,6 +54,13 @@ jobs:
             Exit 1
           }
 
+      # This step sets release version in source control. Uses pwsh for lack of an available github action.
+      - name: Set Release Version in Repo
+        if: inputs.releaseVersion != ''
+        run: |
+          (Get-Content -Path ./HandheldCompanion.iss) -replace "#define MyAppVersion `'\d+(?:\.\d+){3}`'", "#define MyAppVersion '${{ inputs.releaseVersion }}'" | Out-File ./HandheldCompanion.iss
+          (Get-Content -Path ./HandheldCompanion/HandheldCompanion.csproj) -replace "<Version>\d+(?:\.\d+){3}</Version>", "<Version>${{ inputs.releaseVersion }}</Version>" | Out-File ./HandheldCompanion/HandheldCompanion.csproj
+
       - name: Install Innosetup
         run: |
           choco install innosetup --version=${{ env.INNO_VERSION }} --force
