@@ -956,7 +956,7 @@ public static class ControllerManager
 
     public static bool SuspendController(string baseContainerDeviceInstanceId)
     {
-        // PnPUtil.StartPnPUtil(@"/delete-driver C:\Windows\INF\oem118.inf /uninstall /force");
+        // PnPUtil.StartPnPUtil(@"/delete-driver C:\Windows\INF\oem18.inf /uninstall /force");
         StringCollection deviceInstanceIds = SettingsManager.GetStringCollection("SuspendedControllers");
 
         if (deviceInstanceIds is null)
@@ -999,7 +999,7 @@ public static class ControllerManager
 
     public static bool ResumeControllers()
     {
-        // PnPUtil.StartPnPUtil(@"/add-driver C:\Windows\INF\oem118.inf /install");
+        // PnPUtil.StartPnPUtil(@"/add-driver C:\Windows\INF\oem18.inf /install");
         StringCollection deviceInstanceIds = SettingsManager.GetStringCollection("SuspendedControllers");
 
         if (deviceInstanceIds is null || deviceInstanceIds.Count == 0)
@@ -1023,10 +1023,10 @@ public static class ControllerManager
                 switch (enumerator)
                 {
                     case "USB":
-                        if (pnPDriver is null || pnPDriver.InfPath != "oem118.inf")
+                        if (pnPDriver is null || pnPDriver.InfPath != "oem18.inf")
                         {
                             pnPDevice.RemoveAndSetup();
-                            pnPDevice.InstallCustomDriver("oem118.inf", out bool rebootRequired);
+                            pnPDevice.InstallCustomDriver("oem18.inf", out bool rebootRequired);
                         }
 
                         if (deviceInstanceIds.Contains(baseContainerDeviceInstanceId))
